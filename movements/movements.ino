@@ -7,6 +7,7 @@ int MotorA2 = 7;
 int enableB = 10;
 int MotorB1 = 8;
 int MotorB2 = 12;
+int a;
 
 void setup() {
   // put your setup code here, to run once:
