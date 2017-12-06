@@ -23,10 +23,11 @@ pinMode (MotorB2, OUTPUT);
 }
 
 void loop() {
-  
+while(Serial.available()){  
+a=Serial.readString();
 //move fwd
 
-if(mySerial.available()=='11') {
+if(a=='11') {
 analogWrite(enableA, 255);
 analogWrite(enableB, 255);
 
@@ -41,7 +42,7 @@ Serial.println("Moving fwd :)")}
 
 //move back
 
-if(mySerial.available()=='00') {
+if(a=='00') {
 analogWrite(enableA, 255);
 analogWrite(enableB, 255);
 
@@ -57,7 +58,7 @@ Serial.println("Moving backwards :(") }
 
 //turn right
 
-if(mySerial.available()=='01') {
+if(a=='01') {
 analogWrite(enableA, 125);
 analogWrite(enableB, 255);
 
@@ -73,7 +74,7 @@ Serial.println("Turning right :)")}
 
 //turn left
 
-if(mySerial.available()=='10') {
+if(a=='10') {
 analogWrite(enableA, 255);
 analogWrite(enableB, 125);
 
@@ -87,7 +88,7 @@ Serial.println("Turning left :)")}
 
 //stop
 
-if(mySerial.available()=='#') {
+if(a=='#') {
 analogWrite(enableA, 0);
 analogWrite(enableB, 0);
 
@@ -101,4 +102,5 @@ Serial.println("STOP :)")}
 
 
 
+}
 }
