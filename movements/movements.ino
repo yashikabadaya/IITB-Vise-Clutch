@@ -36,7 +36,7 @@ digitalWrite (MotorA2, HIGH);
 
 digitalWrite (MotorB1, LOW);
 digitalWrite (MotorB2, HIGH);
-Serial.println("Moving fwd :)")
+Serial.println("Moving fwd :)")}
 
 
 //move back
@@ -51,7 +51,7 @@ digitalWrite (MotorA2, LOW);
 
 digitalWrite (MotorB1, HIGH);
 digitalWrite (MotorB2, LOW);
-Serial.println("Moving backwards :(")
+Serial.println("Moving backwards :(") }
 
 
 
@@ -67,7 +67,7 @@ digitalWrite (MotorA2, HIGH);
 
 digitalWrite (MotorB1, LOW);
 digitalWrite (MotorB2, HIGH);
-Serial.println("Turning right :)")
+Serial.println("Turning right :)")}
 
 
 
@@ -83,11 +83,11 @@ digitalWrite (MotorA2, HIGH);
 
 digitalWrite (MotorB1, LOW);
 digitalWrite (MotorB2, HIGH);
-Serial.println("Turning left :)")
+Serial.println("Turning left :)")}
 
 
 
-}
+
 
 
 }
