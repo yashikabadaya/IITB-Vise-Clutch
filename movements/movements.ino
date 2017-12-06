@@ -85,8 +85,19 @@ digitalWrite (MotorB1, LOW);
 digitalWrite (MotorB2, HIGH);
 Serial.println("Turning left :)")}
 
+//stop
+
+if(mySerial.available()=='#') {
+analogWrite(enableA, 0);
+analogWrite(enableB, 0);
+
+digitalWrite (MotorA1, LOW);
+digitalWrite (MotorA2, HIGH);
 
 
+digitalWrite (MotorB1, LOW);
+digitalWrite (MotorB2, HIGH);
+Serial.println("STOP :)")}
 
 
 
