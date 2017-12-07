@@ -1,6 +1,6 @@
 #include <SoftwareSerial.h>
-SoftwareSerial mySerial(0,1);
-int enableA = 3;
+SoftwareSerial Bluetooth(0,1);
+int enableA = 11;
 int MotorA1 = 4;
 int MotorA2 = 7;
 
@@ -11,9 +11,10 @@ int a;
 
 void setup() {
   // put your setup code here, to run once:
-
+Bluetooth.begin(9600);
 Serial.begin (9600); //configure pin modes
 //pinMode (pwm, OUTPUT);
+Bluetooth.println("Send 1 for moving fwd, 2 for backwards, 3 for turning right, 4 for turning left and 5 to stop.");
 pinMode (enableA, OUTPUT);
 pinMode (MotorA1, OUTPUT);
 pinMode (MotorA2, OUTPUT);
@@ -24,8 +25,8 @@ pinMode (MotorB2, OUTPUT);
 }
 
 void loop() {
-while(Serial.available()){  
-a=Serial.read();
+while(Bluetooth.available()){  
+a=Bluetooth.read();
 //move fwd
 
 if(a=='1') {
@@ -43,7 +44,7 @@ Serial.println("Moving fwd :)");}
 
 //move back
 
-if(a=='2') {
+else if(a=='2') {
 analogWrite(enableA, 255);
 analogWrite(enableB, 255);
 
@@ -59,7 +60,7 @@ Serial.println("Moving backwards :("); }
 
 //turn right
 
-if(a=='3') {
+else if(a=='3') {
 analogWrite(enableA, 125);
 analogWrite(enableB, 255);
 
@@ -75,7 +76,7 @@ Serial.println("Turning right :)");}
 
 //turn left
 
-if(a=='4') {
+else if(a=='4') {
 analogWrite(enableA, 255);
 analogWrite(enableB, 125);
 
@@ -89,7 +90,7 @@ Serial.println("Turning left :)");}
 
 //stop
 
-if(a=='5') {
+else if(a=='5') {
 analogWrite(enableA, 0);
 analogWrite(enableB, 0);
 
@@ -100,6 +101,8 @@ digitalWrite (MotorA2, HIGH);
 digitalWrite (MotorB1, LOW);
 digitalWrite (MotorB2, HIGH);
 Serial.println("STOP :)");}
+
+else {;}
 
 
 
