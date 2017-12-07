@@ -1,5 +1,5 @@
 #include <SoftwareSerial.h>
-SoftwareSerial mySerial(0,1)
+SoftwareSerial mySerial(0,1);
 int enableA = 3;
 int MotorA1 = 4;
 int MotorA2 = 7;
@@ -25,10 +25,10 @@ pinMode (MotorB2, OUTPUT);
 
 void loop() {
 while(Serial.available()){  
-a=Serial.readString();
+a=Serial.read();
 //move fwd
 
-if(a=='11') {
+if(a=='1') {
 analogWrite(enableA, 255);
 analogWrite(enableB, 255);
 
@@ -38,12 +38,12 @@ digitalWrite (MotorA2, HIGH);
 
 digitalWrite (MotorB1, LOW);
 digitalWrite (MotorB2, HIGH);
-Serial.println("Moving fwd :)")}
+Serial.println("Moving fwd :)");}
 
 
 //move back
 
-if(a=='00') {
+if(a=='2') {
 analogWrite(enableA, 255);
 analogWrite(enableB, 255);
 
@@ -53,13 +53,13 @@ digitalWrite (MotorA2, LOW);
 
 digitalWrite (MotorB1, HIGH);
 digitalWrite (MotorB2, LOW);
-Serial.println("Moving backwards :(") }
+Serial.println("Moving backwards :("); }
 
 
 
 //turn right
 
-if(a=='01') {
+if(a=='3') {
 analogWrite(enableA, 125);
 analogWrite(enableB, 255);
 
@@ -69,13 +69,13 @@ digitalWrite (MotorA2, HIGH);
 
 digitalWrite (MotorB1, LOW);
 digitalWrite (MotorB2, HIGH);
-Serial.println("Turning right :)")}
+Serial.println("Turning right :)");}
 
 
 
 //turn left
 
-if(a=='10') {
+if(a=='4') {
 analogWrite(enableA, 255);
 analogWrite(enableB, 125);
 
@@ -85,11 +85,11 @@ digitalWrite (MotorA2, HIGH);
 
 digitalWrite (MotorB1, LOW);
 digitalWrite (MotorB2, HIGH);
-Serial.println("Turning left :)")}
+Serial.println("Turning left :)");}
 
 //stop
 
-if(a=='#') {
+if(a=='5') {
 analogWrite(enableA, 0);
 analogWrite(enableB, 0);
 
@@ -99,7 +99,7 @@ digitalWrite (MotorA2, HIGH);
 
 digitalWrite (MotorB1, LOW);
 digitalWrite (MotorB2, HIGH);
-Serial.println("STOP :)")}
+Serial.println("STOP :)");}
 
 
 
