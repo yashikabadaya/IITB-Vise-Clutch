@@ -1,5 +1,7 @@
 #include <SoftwareSerial.h>
+#include <Servo.h>
 SoftwareSerial Bluetooth(0,1);
+Servo myservo; 
 int enableA = 11;
 int MotorA1 = 4;
 int MotorA2 = 7;
@@ -7,14 +9,15 @@ int MotorA2 = 7;
 int enableB = 10;
 int MotorB1 = 8;
 int MotorB2 = 12;
-int a;
+char a;
+int pos;
 
 void setup() {
   // put your setup code here, to run once:
 Bluetooth.begin(9600);
-Serial.begin (9600); //configure pin modes
+//Serial.begin (9600); //configure pin modes
 //pinMode (pwm, OUTPUT);
-Bluetooth.println("Send 1 for moving fwd, 2 for backwards, 3 for turning right, 4 for turning left and 5 to stop.");
+//Bluetooth.println("Send 1 for moving fwd, 2 for backwards, 3 for turning right, 4 for turning left and 5 to stop.");
 pinMode (enableA, OUTPUT);
 pinMode (MotorA1, OUTPUT);
 pinMode (MotorA2, OUTPUT);
@@ -25,7 +28,8 @@ pinMode (MotorB2, OUTPUT);
 }
 
 void loop() {
-while(Bluetooth.available()){  
+myservo.attach(9);  
+if(Bluetooth.available()){  
 a=Bluetooth.read();
 //move fwd
 
@@ -102,9 +106,49 @@ digitalWrite (MotorB1, LOW);
 digitalWrite (MotorB2, HIGH);
 Serial.println("STOP :)");}
 
-else {;}
+
+//move up
+else if(a=='6'){
+
+myservo.write(30);
+Bluetooth.println("mving up")  ;
+}
+
+//move down
+else if(a=='7'){
+myservo.write(60);
+Bluetooth.println("moving down");
+}
+
+
+//
+////open gripper
+//else if(a=='8'){
+//for (pos = 0; pos <= 180; pos += 10) { // goes from 0 degrees to 180 degrees
+//    // in steps of 1 degree
+//    myservo.write(pos);              // tell servo to go to position in variable 'pos'
+//    delay(5);                       // waits 15ms for the servo to reach the position
+//  }
+//}
+//
+//
+////close gripper
+//else if(a=='9'){
+//for (pos = 180; pos >= 0; pos -= 10) { // goes from 180 degrees to 0 degrees
+//    myservo.write(pos);              // tell servo to go to position in variable 'pos'
+//    delay(5);                       // waits 15ms for the servo to reach the position
+//  }
+//}
+
+
+//stop servo
+else if(a=='0'){
+myservo.detach();
+}
+}
+
 
 
 
 }
-}
+
